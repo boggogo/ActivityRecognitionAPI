@@ -20,7 +20,8 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.ActivityRecognition;
 
-public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
+public class MainActivity extends AppCompatActivity implements
+        GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener{
 
 
@@ -31,7 +32,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private TextView mStatus;
 
     private static final int REQUEST_CODE = 0;
-    private static final long UPDATE_INTERVAL = 3000;
+    // every 3 minutes
+    private static final long UPDATE_INTERVAL = 1000 * 60 * 3;
     private GoogleApiClient mClient;
 
     @Override
@@ -65,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 LocalBroadcastManager.getInstance(MainActivity.this).unregisterReceiver(mBroadcastReceiver);
                 mStatus.setText("Status: stopped");
                 Toast.makeText(MainActivity.this,"Stopped",Toast.LENGTH_SHORT).show();
+                mActivityType.setText("--");
+                mConfidenceLevel.setText("--");
             }
         });
 
