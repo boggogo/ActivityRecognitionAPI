@@ -70,4 +70,13 @@
         android:layout_below="@+id/activityType"
         android:layout_toRightOf="@+id/confidenceLabel"
         android:layout_toEndOf="@+id/confidenceLabel"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Status: --"
+        android:id="@+id/status"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>

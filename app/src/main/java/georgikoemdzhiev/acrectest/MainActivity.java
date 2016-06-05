@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private Button mStopBtn;
     private TextView mActivityType;
     private TextView mConfidenceLevel;
+    private TextView mStatus;
 
     private static final int REQUEST_CODE = 0;
     private static final long UPDATE_INTERVAL = 3000;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         mStopBtn = (Button)findViewById(R.id.stopBtn);
         mActivityType = (TextView)findViewById(R.id.activityType);
         mConfidenceLevel = (TextView)findViewById(R.id.confidence);
+        mStatus = (TextView)findViewById(R.id.status);
 
 
         mStopBtn.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             public void onClick(View view) {
                 mClient.disconnect();
                 LocalBroadcastManager.getInstance(MainActivity.this).unregisterReceiver(mBroadcastReceiver);
+                mStatus.setText("Status: stopped");
                 Toast.makeText(MainActivity.this,"Stopped",Toast.LENGTH_SHORT).show();
             }
         });
@@ -76,8 +79,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             }
         });
 
-
     }
+
+//    @Override
+//    protected void onResume() {
+//        Toast.makeText(MainActivity.this,"Started",Toast.LENGTH_SHORT).show();
+//        super.onResume();
+//    }
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
@@ -116,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             String message = intent.getStringExtra(Constants.MESSAGE_KEY);
             mActivityType.setText(message);
             mConfidenceLevel.setText("" + intent.getIntExtra(Constants.CONFIDENCE_KEY,0));
+            mStatus.setText("Status: Receiving updates");
             logThis("Got message: " + message);
         }
     };
