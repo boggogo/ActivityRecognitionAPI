@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements
                 LocalBroadcastManager.getInstance(MainActivity.this).unregisterReceiver(mBroadcastReceiver);
                 mStatus.setText("Status: stopped");
                 Toast.makeText(MainActivity.this,"Stopped",Toast.LENGTH_SHORT).show();
+                activityRecPoints.clear();
                 //mActivityType.setText("--");
                 //mConfidenceLevel.setText("--");
             }
