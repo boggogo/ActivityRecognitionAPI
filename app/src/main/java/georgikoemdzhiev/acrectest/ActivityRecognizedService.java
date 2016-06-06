@@ -96,7 +96,7 @@ public class ActivityRecognizedService extends IntentService {
     }
 
     private void sendMessage(String message, int confidence) {
-        // send only if the confidence is above 75
+        // send message only if the confidence level is above 75
         if(confidence >= 75) {
             Intent intent = new Intent(Constants.INTENT_FILTER);
             intent.putExtra(Constants.MESSAGE_KEY, message);

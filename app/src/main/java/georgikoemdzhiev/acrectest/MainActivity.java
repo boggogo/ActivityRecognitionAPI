@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private static final int REQUEST_CODE = 0;
     // every 3 minutes
-    private static final long UPDATE_INTERVAL = 1000 * 60 * 3;
+    private static final long UPDATE_INTERVAL = 1000 * 60 * 1;
     private GoogleApiClient mClient;
 
     @Override
@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .build();
-
         mClient.connect();
 
 
@@ -67,8 +66,8 @@ public class MainActivity extends AppCompatActivity implements
                 LocalBroadcastManager.getInstance(MainActivity.this).unregisterReceiver(mBroadcastReceiver);
                 mStatus.setText("Status: stopped");
                 Toast.makeText(MainActivity.this,"Stopped",Toast.LENGTH_SHORT).show();
-                mActivityType.setText("--");
-                mConfidenceLevel.setText("--");
+                //mActivityType.setText("--");
+                //mConfidenceLevel.setText("--");
             }
         });
 
