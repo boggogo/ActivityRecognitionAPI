@@ -81,10 +81,10 @@ public class ActivityRecognizedService extends IntentService {
 //                        builder.setContentTitle( getString( R.string.app_name ) );
 //                        NotificationManagerCompat.from(this).notify(0, builder.build());
 //                    }
-
                     sendMessage("Walking",activity.getConfidence());
                     break;
                 }
+
                 case DetectedActivity.UNKNOWN: {
                     Log.e( "ActivityRecognition", "Unknown: " + activity.getConfidence() );
                     break;
