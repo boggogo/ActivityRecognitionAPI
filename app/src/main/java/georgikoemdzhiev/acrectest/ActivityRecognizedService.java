@@ -108,15 +108,16 @@ public class ActivityRecognizedService extends IntentService {
 
         if(confidence >= 75) {
             ActivityRecPoint newPoint = new ActivityRecPoint(message,System.currentTimeMillis());
-            activityRecPoints.add(newPoint);
 
-            intent.putExtra(Constants.LIST_KEY, (Serializable) activityRecPoints);
+
+            intent.putExtra(Constants.LIST_ITEM_KEY, newPoint);
 
             intent.putExtra(Constants.MESSAGE_KEY, message);
             intent.putExtra(Constants.CONFIDENCE_KEY, confidence);
             mLocalBroadcastManager.sendBroadcast(intent);
-            logThis("List size:"+activityRecPoints.size());
         }
+
+        logThis("List size:"+activityRecPoints.size());
     }
 
 

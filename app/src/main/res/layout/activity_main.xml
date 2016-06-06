@@ -82,19 +82,36 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="26dp" />
 
+    <TextView
+        android:id="@+id/previousActivitiesLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Previous activities log"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/status" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="________________________________"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/previousActivitiesLabel"
+        android:id="@+id/textView" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/status"
         android:scrollbars="vertical"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/linearLayout">
+        android:layout_above="@+id/linearLayout"
+        android:layout_below="@+id/textView">
         <TextView
             android:textSize="17sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="[ActivityType='Still', time=06/06/2016 10:15:18]"
+            android:text="No previous log of activities"
             android:id="@+id/pastActivities"
             android:layout_below="@+id/status"
             android:layout_centerHorizontal="true"

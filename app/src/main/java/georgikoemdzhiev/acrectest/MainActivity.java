@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private static final int REQUEST_CODE = 0;
     // every 3 minutes
-    private static final long UPDATE_INTERVAL = 1000 * 60 * 1;
+    private static final long UPDATE_INTERVAL = 1000;
     private GoogleApiClient mClient;
 
     @Override
@@ -133,8 +133,13 @@ public class MainActivity extends AppCompatActivity implements
             mActivityType.setText(message);
             mConfidenceLevel.setText("" + intent.getIntExtra(Constants.CONFIDENCE_KEY,0));
             mStatus.setText("Status: Receiving updates");
-            mPastActivities.setText(intent.getSerializableExtra(Constants.LIST_KEY).toString());
+
+            ActivityRecPoint receivedPoint = (ActivityRecPoint) intent.getSerializableExtra(Constants.LIST_ITEM_KEY);
+            activityRecPoints.add(receivedPoint);
+
+            mPastActivities.setText(activityRecPoints.toString());
             logThis("Got message: " + message);
+            logThis("List size:"+activityRecPoints.size());
         }
     };
 }
