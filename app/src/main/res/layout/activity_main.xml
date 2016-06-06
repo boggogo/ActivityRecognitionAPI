@@ -15,7 +15,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout">
 
         <Button
             android:layout_width="wrap_content"
@@ -77,6 +78,26 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Status: --"
         android:id="@+id/status"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_below="@+id/confidence"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/status"
+        android:scrollbars="vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/linearLayout">
+        <TextView
+            android:textSize="17sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="[ActivityType='Still', time=06/06/2016 10:15:18]"
+            android:id="@+id/pastActivities"
+            android:layout_below="@+id/status"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="23dp" />
+    </ScrollView>
 </RelativeLayout>

@@ -8,6 +8,8 @@ import android.util.Log;
 import com.google.android.gms.location.ActivityRecognitionResult;
 import com.google.android.gms.location.DetectedActivity;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,10 +17,12 @@ import java.util.List;
  */
 public class ActivityRecognizedService extends IntentService {
     private LocalBroadcastManager mLocalBroadcastManager;
+    private List<ActivityRecPoint> activityRecPoints;
 
     @Override
     public void onCreate() {
         mLocalBroadcastManager = LocalBroadcastManager.getInstance(getApplicationContext());
+        activityRecPoints = new ArrayList<>();
         super.onCreate();
     }
 
@@ -45,6 +49,8 @@ public class ActivityRecognizedService extends IntentService {
                 case DetectedActivity.IN_VEHICLE: {
                     Log.e( "ActivityRecognition", "In Vehicle: " + activity.getConfidence() );
                     sendMessage("In Vehicle",activity.getConfidence());
+
+
                     break;
                 }
                 case DetectedActivity.ON_BICYCLE: {
@@ -91,19 +97,30 @@ public class ActivityRecognizedService extends IntentService {
                 }
             }
 
-
         }
+
+
     }
 
     private void sendMessage(String message, int confidence) {
         // send message only if the confidence level is above 75
+        Intent intent = new Intent(Constants.INTENT_FILTER);
+
         if(confidence >= 75) {
-            Intent intent = new Intent(Constants.INTENT_FILTER);
+            ActivityRecPoint newPoint = new ActivityRecPoint(message,System.currentTimeMillis());
+            activityRecPoints.add(newPoint);
+
+            intent.putExtra(Constants.LIST_KEY, (Serializable) activityRecPoints);
+
             intent.putExtra(Constants.MESSAGE_KEY, message);
             intent.putExtra(Constants.CONFIDENCE_KEY, confidence);
             mLocalBroadcastManager.sendBroadcast(intent);
+            logThis("List size:"+activityRecPoints.size());
         }
     }
+
+
+
 
 
     private void logThis(String s){

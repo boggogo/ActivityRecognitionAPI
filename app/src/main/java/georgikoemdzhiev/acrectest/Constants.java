@@ -10,5 +10,7 @@ public class Constants {
 
     public static final String INTENT_FILTER = "my-intent-filter";
 
+    public static final String LIST_KEY = "list_key";
+
 
 }

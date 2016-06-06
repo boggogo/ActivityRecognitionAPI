@@ -20,16 +20,20 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.ActivityRecognition;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener{
 
-
+    private List<ActivityRecPoint> activityRecPoints = new ArrayList<>();
     private Button mStartBtn;
     private Button mStopBtn;
     private TextView mActivityType;
     private TextView mConfidenceLevel;
     private TextView mStatus;
+    private TextView mPastActivities;
 
     private static final int REQUEST_CODE = 0;
     // every 3 minutes
@@ -57,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements
         mActivityType = (TextView)findViewById(R.id.activityType);
         mConfidenceLevel = (TextView)findViewById(R.id.confidence);
         mStatus = (TextView)findViewById(R.id.status);
+        mPastActivities = (TextView)findViewById(R.id.pastActivities);
 
 
         mStopBtn.setOnClickListener(new View.OnClickListener() {
@@ -128,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements
             mActivityType.setText(message);
             mConfidenceLevel.setText("" + intent.getIntExtra(Constants.CONFIDENCE_KEY,0));
             mStatus.setText("Status: Receiving updates");
+            mPastActivities.setText(intent.getSerializableExtra(Constants.LIST_KEY).toString());
             logThis("Got message: " + message);
         }
     };
